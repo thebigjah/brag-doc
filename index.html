@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brag Doc, what you've done, kept honest | Elijah Purcell</title>
 <meta name="description" content="Log what you shipped, what people said, what you won. The document you reach for at resume time. By Elijah Purcell, Purcell Ventures LLC.">
-<meta property="og:title" content="Brag Doc — what you've done, kept honest">
+<meta property="og:title" content="Brag Doc, what you've done, kept honest">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
     Theme: the printed program for an awards ceremony. Champagne
     paper, foil-stamped gold names, ribbon-red type accents.
     Each entry is engraved on a brass-nameplate panel. Quiet
-    confidence, not bragging — formal recognition.
+    confidence, not bragging, formal recognition.
     ============================================================ */
 
   :root {
@@ -261,7 +261,7 @@
 
   .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
 
-  /* ENTRY — brass nameplate */
+  /* ENTRY, brass nameplate */
   .entry {
     padding: 22px 24px;
     border: none;
@@ -337,7 +337,7 @@
     font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
     margin-top: 6px;
   }
-  .entry .source::before { content: "— "; }
+  .entry .source::before { content: ", "; }
   .entry .link {
     margin-top: 10px;
     font-family: var(--label); font-size: 11px;
@@ -460,7 +460,7 @@
 <header>
   <span class="program-label">The Programme · Anno MMXXVI</span>
   <h1>Brag Doc</h1>
-  <p>what you've done, kept honest — for the dark days and the résumé days</p>
+  <p>what you've done, kept honest, for the dark days and the résumé days</p>
   <div class="head-decor">·  ·  ·</div>
 </header>
 
@@ -479,11 +479,11 @@
 
     <label>Type</label>
     <div class="type-row" id="type-row">
-      <button data-t="ship">Shipped — a project, work product</button>
-      <button data-t="kind">Kind word — someone said something</button>
+      <button data-t="ship">Shipped, a project, work product</button>
+      <button data-t="kind">Kind word, someone said something</button>
       <button data-t="award">Award / honor / acceptance</button>
-      <button data-t="skill">Skill milestone — new ability or breakthrough</button>
-      <button data-t="metric">Metric — measurable outcome</button>
+      <button data-t="skill">Skill milestone, new ability or breakthrough</button>
+      <button data-t="metric">Metric, measurable outcome</button>
     </div>
 
     <label>Date</label>
@@ -492,7 +492,7 @@
     <label>Short title</label>
     <input type="text" id="e-title" placeholder="e.g. Shipped the app / Landed the intro / Got the offer">
 
-    <label>What happened — detail</label>
+    <label>What happened, detail</label>
     <textarea id="e-detail" placeholder="A few specifics. Numbers if you have them. What you did, not just what happened."></textarea>
 
     <label>Said by (if a kind word)</label>
@@ -541,7 +541,7 @@
     <h2>Pull out for an application or résumé</h2>
     <p class="help">Generates a clean copy-paste section grouped by type. Filters out tags you exclude.</p>
     <label>Tags to include (leave blank for all)</label>
-    <input type="text" id="ex-tags" placeholder="e.g., college, business — space or comma separated">
+    <input type="text" id="ex-tags" placeholder="e.g., college, business, space or comma separated">
     <label>Date range (leave blank for all)</label>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;">
       <input type="date" id="ex-from">
@@ -571,7 +571,7 @@
 <footer>
   <p>The doc you wish you'd been keeping. Start now.<br>
   <a href="https://github.com/thebigjah/brag-doc">github.com/thebigjah/brag-doc</a></p>
-  <div class="credit">— PURCELLVENTURES.CO —</div>
+  <div class="credit">, PURCELLVENTURES.CO,</div>
 </footer>
 
 </div>
@@ -652,8 +652,8 @@ function renderEntryCard(e) {
         <div class="meta">${escapeHtml(fmtDate(e.date))} · ${TYPE_LABEL[e.type] || e.type}${e.tag ? ' · ' + escapeHtml(e.tag) : ''}</div>
         <div class="title">${escapeHtml(e.title)}</div>
         ${e.type === 'kind' && e.detail
-          ? `<div class="quoted">${escapeHtml(e.detail)}</div>${e.saidBy ? `<div class="source">— ${escapeHtml(e.saidBy)}</div>` : ''}`
-          : `${e.detail ? `<div class="detail">${escapeHtml(e.detail)}</div>` : ''}${e.saidBy ? `<div class="source">— ${escapeHtml(e.saidBy)}</div>` : ''}`}
+          ? `<div class="quoted">${escapeHtml(e.detail)}</div>${e.saidBy ? `<div class="source">, ${escapeHtml(e.saidBy)}</div>` : ''}`
+          : `${e.detail ? `<div class="detail">${escapeHtml(e.detail)}</div>` : ''}${e.saidBy ? `<div class="source">, ${escapeHtml(e.saidBy)}</div>` : ''}`}
         ${e.link ? `<div class="link"><a href="${escapeHtml(e.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(e.link)}</a></div>` : ''}
         <div class="actions">
           <button class="ghost" onclick="deleteEntry('${e.id}')">Delete</button>
@@ -742,9 +742,9 @@ window.generateExport = () => {
     if (!groups[type].length) return;
     out += `## ${sectionLabels[type]}\n\n`;
     groups[type].forEach(e => {
-      out += `- **${fmtDate(e.date)}** — ${e.title}`;
+      out += `- **${fmtDate(e.date)}**, ${e.title}`;
       if (e.detail) out += `\n  ${e.detail.split('\n').join('\n  ')}`;
-      if (e.saidBy) out += `\n  — ${e.saidBy}`;
+      if (e.saidBy) out += `\n , ${e.saidBy}`;
       if (e.link) out += `\n  ${e.link}`;
       out += '\n';
     });
